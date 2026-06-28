@@ -2,233 +2,308 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>FrogForum</title>
 
 <style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:Verdana, Arial, sans-serif;
-}
 
 body{
-    background:#101010;
-    color:#d8ffd8;
-}
-
-/* Header */
-
-header{
-    background:#1a331a;
-    border-bottom:3px solid #4CAF50;
-    text-align:center;
-    padding:30px;
-}
-
-header h1{
-    color:#76ff76;
-    font-size:48px;
-}
-
-header p{
-    color:#b8ffb8;
-    margin-top:8px;
-}
-
-/* Navigation */
-
-nav{
-    background:#162616;
-    border-bottom:2px solid #355d35;
-    padding:12px;
-    text-align:center;
-}
-
-nav a{
-    color:#99ff99;
-    text-decoration:none;
-    margin:0 15px;
-    font-weight:bold;
-}
-
-nav a:hover{
-    color:white;
-}
-
-/* Main */
-
-.container{
-    width:900px;
-    max-width:95%;
-    margin:30px auto;
-}
-
-/* Boxes */
-
-.box{
-    background:#1b1b1b;
-    border:2px solid #3b7a3b;
-    margin-bottom:20px;
-}
-
-.box h2{
-    background:#295529;
-    color:white;
-    padding:10px;
-    font-size:20px;
-}
-
-.box .content{
-    padding:15px;
-    line-height:1.7;
-}
-
-/* Boards */
-
-.boards{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-    gap:15px;
-}
-
-.board{
-    background:#232323;
-    border:1px solid #4CAF50;
-    padding:15px;
-}
-
-.board h3{
-    color:#8cff8c;
-    margin-bottom:8px;
-}
-
-.board p{
-    color:#d0ffd0;
+    margin:0;
+    background:#203320;
+    color:#d9ffd9;
+    font-family:Verdana, Arial, sans-serif;
     font-size:14px;
 }
 
-/* Button */
-
-.button{
-    display:inline-block;
-    margin-top:15px;
-    padding:10px 18px;
-    background:#2d7d2d;
-    color:white;
+a{
+    color:#7fd67f;
     text-decoration:none;
-    border:2px solid #58d458;
 }
 
-.button:hover{
-    background:#45a045;
+a:hover{
+    text-decoration:underline;
 }
 
-/* Footer */
+#wrapper{
+    width:960px;
+    margin:20px auto;
+    background:#101010;
+    border:3px solid #3f7f3f;
+}
+
+#banner{
+    background:linear-gradient(#4d8d4d,#2a572a);
+    border-bottom:3px solid #66aa66;
+    padding:15px;
+}
+
+#banner h1{
+    margin:0;
+    color:white;
+    font-size:42px;
+}
+
+#banner small{
+    color:#d5ffd5;
+}
+
+#menu{
+    background:#182818;
+    padding:10px;
+    border-bottom:2px solid #335533;
+    text-align:center;
+}
+
+#menu a{
+    margin:0 10px;
+    font-weight:bold;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+td{
+    vertical-align:top;
+}
+
+.left{
+    width:260px;
+    background:#181818;
+    border-right:2px solid #2d5a2d;
+    padding:10px;
+}
+
+.right{
+    padding:15px;
+}
+
+.box{
+    background:#181818;
+    border:1px solid #4d8d4d;
+    margin-bottom:15px;
+}
+
+.box-title{
+    background:#3a733a;
+    color:white;
+    padding:8px;
+    font-weight:bold;
+}
+
+.box-content{
+    padding:10px;
+}
+
+.board{
+    background:#202020;
+    margin:5px 0;
+    padding:8px;
+    border-left:5px solid #5db75d;
+}
+
+.board:hover{
+    background:#292929;
+}
+
+button{
+    background:#4a9b4a;
+    color:white;
+    border:1px solid #74d074;
+    padding:8px 18px;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#63b563;
+}
 
 footer{
-    margin-top:50px;
-    padding:20px;
     text-align:center;
-    color:#88bb88;
-    border-top:2px solid #2d5c2d;
+    padding:15px;
+    border-top:2px solid #336633;
+    color:#9acd9a;
+    font-size:12px;
 }
+
+img{
+    max-width:100%;
+    border:2px solid #3d7a3d;
+}
+
+.notice{
+    background:#2a442a;
+    border:1px solid #5cb85c;
+    padding:10px;
+}
+
 </style>
 
 </head>
+
 <body>
 
-<header>
+<div id="wrapper">
+
+<div id="banner">
 <h1> FrogForum</h1>
-<p>Anonymous Discussions • Memes • Gaming • Tutorials • News</p>
-</header>
+<small>Anonymous Imageboard • News • Gaming • Tutorials • Memes</small>
+</div>
 
-<nav>
-<a href="#">Home</a>
-<a href="#">Boards</a>
-<a href="#">Rules</a>
-<a href="#">FAQ</a>
-</nav>
+<div id="menu">
+<a href="#">Home</a> |
+<a href="#">Boards</a> |
+<a href="#">Rules</a> |
+<a href="#">FAQ</a> |
+<a href="#">GitHub</a>
+</div>
 
-<div class="container">
+<table>
+
+<tr>
+
+<td class="left">
 
 <div class="box">
-<h2>Welcome</h2>
 
-<div class="content">
+<div class="box-title">
+Boggy
+</div>
 
-Welcome to <b>FrogForum</b>.
+<div class="box-content">
 
-A simple anonymous community for sharing memes, discussing games, posting tutorials, and talking about the latest news.
+<img src="boggy.png" alt="Boggy">
+
+<p>
+<b>Meet Boggy!</b>
+</p>
+
+<p>
+The sleepy frog that somehow keeps the forum running.
+</p>
+
+</div>
+
+</div>
+
+<div class="box">
+
+<div class="box-title">
+Forum Stats
+</div>
+
+<div class="box-content">
+
+Threads: 0<br>
+Posts: 0<br>
+Users Online: 1<br>
+Version: 0.1 Alpha
+
+</div>
+
+</div>
+
+</td>
+
+<td class="right">
+
+<div class="box">
+
+<div class="box-title">
+Welcome
+</div>
+
+<div class="box-content">
+
+<div class="notice">
+
+Welcome to <b>FrogForum</b>!
+
+A small anonymous community for memes, gaming, tutorials and discussions.
 
 No accounts required.
 
-<a class="button" href="#">Enter Forum</a>
+</div>
+
+<br>
+
+<button>Enter Forum</button>
 
 </div>
+
 </div>
 
 <div class="box">
-<h2>Boards</h2>
 
-<div class="content">
-
-<div class="boards">
-
-<div class="board">
-<h3>/news/</h3>
-<p>Current events and interesting stories.</p>
+<div class="box-title">
+Boards
 </div>
 
+<div class="box-content">
+
 <div class="board">
-<h3>/games/</h3>
-<p>PC, consoles, mods and gaming discussion.</p>
+<b>/news/</b><br>
+Latest news and discussions.
 </div>
 
 <div class="board">
-<h3>/learn/</h3>
-<p>Tutorials, guides and helpful resources.</p>
+<b>/games/</b><br>
+Gaming discussion.
 </div>
 
 <div class="board">
-<h3>/memes/</h3>
-<p>Funny images and internet culture.</p>
+<b>/learn/</b><br>
+Tutorials and guides.
 </div>
 
 <div class="board">
-<h3>/chat/</h3>
-<p>General discussion about anything.</p>
+<b>/memes/</b><br>
+Funny images and memes.
 </div>
 
 <div class="board">
-<h3>/meta/</h3>
-<p>Suggestions, feedback and site updates.</p>
+<b>/chat/</b><br>
+Talk about anything.
+</div>
+
+<div class="board">
+<b>/meta/</b><br>
+Site feedback and updates.
 </div>
 
 </div>
 
-</div>
 </div>
 
 <div class="box">
-<h2>Site Status</h2>
 
-<div class="content">
-
-✔ Website Online<br>
- Forum currently under development.<br>
- Thanks for visiting FrogForum.
-
-</div>
+<div class="box-title">
+Announcements
 </div>
 
+<div class="box-content">
+
+<b>[06/2026]</b> FrogForum has officially begun development
+
 </div>
+
+</div>
+
+</td>
+
+</tr>
+
+</table>
 
 <footer>
-FrogForum © 2026 • Powered by frogs 
+
+FrogForum © 2026<br>
+Best viewed with a monitor and a keyboard.<br>
+Powered by frogs
+
 </footer>
+
+</div>
 
 </body>
 </html>
