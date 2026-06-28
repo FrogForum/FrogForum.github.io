@@ -4,6 +4,8 @@
 <meta charset="UTF-8">
 <title>/news/ - FrogForum</title>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+
 <style>
 body{
     margin:0;
@@ -22,7 +24,6 @@ a:hover{
     text-decoration:underline;
 }
 
-/* HEADER */
 header{
     background:#1f3d1f;
     padding:15px;
@@ -34,7 +35,6 @@ header h1{
     color:#bfffbf;
 }
 
-/* NAV */
 nav{
     background:#101010;
     padding:10px;
@@ -46,14 +46,12 @@ nav a{
     font-weight:bold;
 }
 
-/* LAYOUT */
 .container{
     width:900px;
     max-width:95%;
     margin:20px auto;
 }
 
-/* BOX */
 .box{
     background:#151515;
     border:1px solid #2f7f2f;
@@ -71,7 +69,6 @@ nav a{
     padding:10px;
 }
 
-/* INPUTS */
 input, textarea{
     width:100%;
     background:#0f0f0f;
@@ -94,7 +91,6 @@ button:hover{
     background:#3faa3f;
 }
 
-/* POST */
 .post{
     border-left:4px solid #5fd65f;
     padding:10px;
@@ -135,59 +131,79 @@ button:hover{
 
 <!-- CREATE POST -->
 <div class="box">
-<div class="box-title">Create News Post</div>
+<div class="box-title">Create Post</div>
 <div class="box-content">
 
-<input type="text" id="title" placeholder="Post title">
-<textarea id="content" rows="4" placeholder="Write your news..."></textarea>
+<input type="text" id="title" placeholder="Title">
+<textarea id="content" rows="4" placeholder="Write your post..."></textarea>
 
 <button onclick="addPost()">Post</button>
 
-<div class="small">Note: Posts are temporary (frontend only)</div>
+<div class="small">Posts are saved permanently in Supabase</div>
 
 </div>
 </div>
 
 <!-- POSTS -->
 <div class="box">
-<div class="box-title">Latest News</div>
-<div class="box-content" id="posts">
-
-<div class="post">
-<div class="post-title">Welcome to FrogForum News</div>
-<div class="small">system • just now</div>
-<p>This is the first test post on /news/ </p>
-</div>
-
-</div>
+<div class="box-title">Latest Posts</div>
+<div class="box-content" id="posts"></div>
 </div>
 
 </div>
 
 <script>
-function addPost(){
+//  YOUR SUPABASE CONNECTION
+const supabaseUrl = "https://csetlaiqdzzjvfjfltxb.supabase.co";
+const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNzZXRsYWlxZHp6anZmamZsdHhiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODI2MjA0NDksImV4cCI6MjA5ODE5NjQ0OX0.dM4CkJRwRmVlCBX8OqtFXLoRN_EiwyI9yEZDXhDuc24";
+
+const client = supabase.createClient(supabaseUrl, supabaseKey);
+
+// LOAD POSTS
+async function loadPosts(){
+    let { data } = await client
+        .from("posts")
+        .select("*")
+        .order("id", { ascending: false });
+
+    let container = document.getElementById("posts");
+    container.innerHTML = "";
+
+    data.forEach(post => {
+        let div = document.createElement("div");
+        div.className = "post";
+
+        div.innerHTML = `
+            <div class="post-title">${post.title}</div>
+            <div class="small">anonymous • ${new Date(post.created_at).toLocaleString()}</div>
+            <p>${post.content}</p>
+        `;
+
+        container.appendChild(div);
+    });
+}
+
+// ADD POST
+async function addPost(){
     let title = document.getElementById("title").value;
     let content = document.getElementById("content").value;
 
-    if(title === "" || content === ""){
-        alert("Fill in both fields!");
+    if(!title || !content){
+        alert("Fill both fields!");
         return;
     }
 
-    let post = document.createElement("div");
-    post.className = "post";
-
-    post.innerHTML = `
-        <div class="post-title">${title}</div>
-        <div class="small">anonymous • just now</div>
-        <p>${content}</p>
-    `;
-
-    document.getElementById("posts").prepend(post);
+    await client.from("posts").insert([
+        { title, content }
+    ]);
 
     document.getElementById("title").value = "";
     document.getElementById("content").value = "";
+
+    loadPosts();
 }
+
+loadPosts();
 </script>
 
 </body>
